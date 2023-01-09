@@ -8,6 +8,9 @@ const path = require('path')
 dotenv.config({path: './config.env'})
 
 const app = express()
+
+const PORT = process.env.PORT || 5001;
+
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -16,35 +19,34 @@ app.use(cors())
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
-require('./db/connection')
+require('./api/db/connection')
 
 // const User = require('./model/userSchema')
-const PORT = process.env.PORT || 5001
 app.use(express.json())
 
-app.use(require('./router/auth'))
+app.use('/api',require('./api/router/auth'))
 
-app.use(require('./router/postCar'))
+app.use('/api',require('./api/router/postCar'))
 
-app.use(require('./router/getCars'))
+app.use('/api',require('./api/router/getCars'))
 
-app.use(require('./router/getCurrentUser'))
+app.use('/api',require('./api/router/getCurrentUser'))
 
-app.use(require('./router/sendLiftRequest'))
+app.use('/api',require('./api/router/sendLiftRequest'))
 
-app.use(require('./router/getRequests'))
+app.use('/api',require('./api/router/getRequests'))
 
-app.use(require('./router/acceptRequest'))
+app.use('/api',require('./api/router/acceptRequest'))
 
-app.use(require('./router/getMyProfile'))
+app.use('/api',require('./api/router/getMyProfile'))
 
-app.use(require('./router/getMyCars'))
+app.use('/api',require('./api/router/getMyCars'))
 
-app.use(require('./router/getUserProfile'))
+app.use('/api',require('./api/router/getUserProfile'))
 
-app.use(require('./router/postLikeDislike'))
+app.use('/api',require('./api/router/postLikeDislike'))
 
-app.use(require('./router/updateProfile'))
+app.use('/api',require('./api/router/updateProfile'))
 
 // app.use(express.static(path.join(__dirname,"./client/build")))
 
@@ -55,9 +57,6 @@ app.use(require('./router/updateProfile'))
 //             res.status(500).send(err);
 //         }
 //     }
-// })
-// app.get('/', (req,res) => {
-//     res.send('hello')
 // })
 
 
