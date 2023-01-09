@@ -64,6 +64,7 @@ router.post('/register', async (req,res) => {
 })
 
 router.post('/login', async (req,res) => {
+    console.log('login req come')
 
     try {
         const {email, password} = req.body;
@@ -82,6 +83,8 @@ router.post('/login', async (req,res) => {
             const token = await userLogin.generateAuthToken();
             console.log(token)
             const verifyToken = jwt.verify(token, process.env.SECRET_KEY)
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+            res.setHeader('Access-Control-Allow-Credentials', true);
             console.log(verifyToken);
             res.cookie("jwtoken",token, {
                 expires: new Date(Date.now() + (30*24*60*60*1000)), // in mili second
