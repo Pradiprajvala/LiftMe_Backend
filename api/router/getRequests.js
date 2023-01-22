@@ -40,7 +40,7 @@ router.post('/getRequests', Authenticate , async (req,res) => {
     }
 })
 
-router.get('/getRequestsByMe',Authenticate, async (req,res) => {
+router.post('/getRequestsByMe',Authenticate, async (req,res) => {
     const user = req.user
     const requests = user.requestsByMe
     const owners = requests.map(request => { return request.ownerId })
