@@ -8,8 +8,9 @@ const Authenticate = async (req,res,next) => {
     try {
 
         
-        const token = req.cookies.jwtoken;
-        console.log('token',req.cookies.jwtoken)
+        const token = req.body.jwtoken || req.cookies.jwtoken;
+        // console.log('token',req.cookies.jwtoken)
+
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY)
         
         // const user = await User.findOne({_id})

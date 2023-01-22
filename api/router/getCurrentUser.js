@@ -3,7 +3,7 @@ const router = express.Router()
 require('../db/connection')
 const Authenticate = require('../middlewere/authenticate') 
 
-router.get('/getCurrentUser', Authenticate,(req,res) => {
+router.post('/getCurrentUser', Authenticate,(req,res) => {
     
     const {_id, name, email, myCars, myFavouriteCars,requestsToMe, requestsByMe, image} = req.user
     console.log(req.user);
