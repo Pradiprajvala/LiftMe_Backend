@@ -86,11 +86,11 @@ router.post('/login', async (req,res) => {
             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
             res.setHeader('Access-Control-Allow-Credentials', true);
             console.log(verifyToken);
-            res.cookie("jwtoken",token, {
-                expires: new Date(Date.now() + (30*24*60*60*1000)), // in mili second
-                httpOnly: true
-            })
-            res.status(200).json({user: userLogin})
+            // res.cookie("jwtoken",token, {
+            //     expires: new Date(Date.now() + (30*24*60*60*1000)), // in mili second
+            //     httpOnly: true
+            // })
+            res.status(200).json({user: userLogin, token: token})
         } else {
             res.status(400).json({msg: 'wrong password'})
         }
