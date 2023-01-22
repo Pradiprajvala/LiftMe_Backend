@@ -14,11 +14,11 @@ const PORT = process.env.PORT || 5001;
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-// const corsOptions ={
-//     origin:'http://localhost:3000', 
-//     credentials:true,            //access-control-allow-credentials:true
-//     optionSuccessStatus:200
-// }
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials: true,            //access-control-allow-credentials:true
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}
 app.use(cors())
 
 const cookieParser = require('cookie-parser')
