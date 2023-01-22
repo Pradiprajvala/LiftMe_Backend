@@ -4,7 +4,7 @@ const Car = require('../model/carSchema')
 const router = express.Router()
 require('../db/connection')
 
-router.get('/getMyCars', Authenticate ,async (req,res) => {
+router.post('/getMyCars', Authenticate ,async (req,res) => {
     try {
         const myCarsId = req.user.myCars
         const myCars = await Car.find({_id: {$in: myCarsId}})

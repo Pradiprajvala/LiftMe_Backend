@@ -5,7 +5,7 @@ const Authenticate = require('../middlewere/authenticate')
 const Car = require('../model/carSchema')
 const User = require('../model/userSchema')
 
-router.get('/getRequests', Authenticate , async (req,res) => {
+router.post('/getRequests', Authenticate , async (req,res) => {
     const user = req.user
     const requests = user.requestsToMe
     const senders = requests.map(request => {
