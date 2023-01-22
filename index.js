@@ -13,13 +13,23 @@ const PORT = process.env.PORT || 5001;
 
 app.use(logger("dev"))
 app.use(express.json())
+
+let allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
+    next();
+}
+app.use(allowCrossDomain);
+
 app.use(express.urlencoded({extended: false}))
 const corsOptions ={
     origin:'http://localhost:3000', 
     credentials: true,            //access-control-allow-credentials:true
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }
-app.use(cors())
+app.use(cors(corsOptions));
+
+
 
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
