@@ -14,13 +14,13 @@ const PORT = process.env.PORT || 5001;
 app.use(logger("dev"))
 app.use(express.json())
 
-let allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-    res.header('Access-Control-Allow-Headers', "*");
-    res.header('Access-Control-Allow-Credentials', true);
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080/");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-}
-app.use(allowCrossDomain);
+  });
+app.options('http://localhost:3000/', cors())
+  
 
 app.use(express.urlencoded({extended: false}))
 const corsOptions ={
