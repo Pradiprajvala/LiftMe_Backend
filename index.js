@@ -15,21 +15,11 @@ app.use(logger("dev"))
 app.use(express.json())
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080/");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
-  });
-app.options('http://localhost:3000/', cors())
-  
-
-app.use(express.urlencoded({extended: false}))
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials: true,            //access-control-allow-credentials:true
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}
-app.use(cors(corsOptions));
+});
 
 
 
